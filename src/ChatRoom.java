@@ -25,9 +25,9 @@ public class ChatRoom {
     }
 
     private static void broadcastMessage(String message) {
-        System.out.println("Broadcasting message: " + message);  // Debugging line
+        System.out.println("Broadcasting message: " + message);
         for (PrintWriter writer : clientWriters) {
-            writer.println(message);  // Send message to all connected clients
+            writer.println(message);
         }
     }
 
@@ -75,7 +75,7 @@ public class ChatRoom {
                             privateMessage(parts[2], parts[1]);
                         }
                     } else if (message.equals("/exit")) {
-                        break;  // Exit command
+                        break;
                     } else {
                         broadcastMessage(userName + ": " + message);
                     }

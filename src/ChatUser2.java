@@ -3,8 +3,8 @@ import java.net.*;
 import java.util.Scanner;
 
 public class ChatUser2 {
-    private static final String SERVER_ADDRESS = "localhost";  // Server address
-    private static final int SERVER_PORT = 12345;  // Server port
+    private static final String SERVER_ADDRESS = "localhost";
+    private static final int SERVER_PORT = 12345;
     private static PrintWriter out;
     private static BufferedReader in;
 
@@ -15,38 +15,34 @@ public class ChatUser2 {
 
         while (true) {
             try {
-                // Attempt to connect to the server
                 Socket socket = new Socket(address, port);
                 in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 out = new PrintWriter(socket.getOutputStream(), true);
 
                 System.out.println("Connected to server. Type your messages.");
 
-                // Start a thread to listen for server messages
                 new Thread(new ServerListener(socket)).start();
 
-                // Read user input and send to server
                 String message;
                 while (true) {
                     message = scanner.nextLine();
                     if (message.equals("/exit")) {
-                        out.println("/exit");  // Send exit message to server
+                        out.println("/exit");
                         break;
                     } else {
-                        System.out.println("Sending message: " + message);  // Debugging line
-                        out.println(message);  // Send message to server
+                        System.out.println("Sending message: " + message);
+                        out.println(message);
                     }
                 }
                 socket.close();
                 break;
             } catch (IOException e) {
                 System.out.println("Unable to connect to server, retrying...");
-                continue;  // Retry if connection fails
+                continue;
             }
         }
     }
 
-    // Listener thread to receive messages from the server
     private static class ServerListener implements Runnable {
         private BufferedReader reader;
 
@@ -57,8 +53,8 @@ public class ChatUser2 {
         public void run() {
             try {
                 String message;
-                while ((message = reader.readLine()) != null) {  // Read messages from server
-                    System.out.println(message);  // Display message on client side
+                while ((message = reader.readLine()) != null) {
+                    System.out.println(message);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
