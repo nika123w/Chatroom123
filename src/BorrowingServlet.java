@@ -16,7 +16,6 @@ public class BorrowingServlet extends HttpServlet {
     public void init() {
         connection = DatabaseConnection.getInstance().getConnection();
     }
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");

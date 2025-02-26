@@ -35,5 +35,4 @@
         <servlet-name>ReturnBookServlet</servlet-name>
         <url-pattern>/borrow/return</url-pattern>
     </servlet-mapping>
-
 </web-app>
